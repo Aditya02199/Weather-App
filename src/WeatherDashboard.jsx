@@ -48,7 +48,7 @@ export default function WeatherDashboard() {
         fetch(`${BASE_URL}/weather?lat=${lat}&lon=${lon}&units=${unit}&appid=${API_KEY}`),
         fetch(`${BASE_URL}/forecast?lat=${lat}&lon=${lon}&units=${unit}&appid=${API_KEY}`)
       ]);
-      if (!wRes.ok) throw new Error("City not found. Check your API key or city name.");
+      if (!wRes.ok) throw new Error("City not found. Please try a different spelling.");
       const wData = await wRes.json();
       const fData = await fRes.json();
       setWeather(wData);
@@ -74,7 +74,7 @@ export default function WeatherDashboard() {
         fetch(`${BASE_URL}/weather?q=${city}&units=${unit}&appid=${API_KEY}`),
         fetch(`${BASE_URL}/forecast?q=${city}&units=${unit}&appid=${API_KEY}`)
       ]);
-      if (!wRes.ok) throw new Error("City not found. Check your API key or city name.");
+      if (!wRes.ok) throw new Error("City not found. Please try a different spelling.");
       const wData = await wRes.json();
       const fData = await fRes.json();
       setWeather(wData);
