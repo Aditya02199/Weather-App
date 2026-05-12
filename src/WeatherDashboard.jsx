@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const API_KEY = "YOUR_API_KEY";
+const API_KEY = "94e7f1c03a6b5b5896d46f917c774eff;
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
 const weatherIcons = {
