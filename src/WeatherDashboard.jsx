@@ -254,63 +254,127 @@ export default function WeatherDashboard() {
 
         {weather && !loading && (
           <>
-            {/* MAIN CARD */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns:
-                  "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "24px",
-                marginBottom: "24px",
-                background: "rgba(255,255,255,0.1)",
-                padding: "24px",
-                borderRadius: "20px",
-              }}
-            >
-              <div>
-                <h2>
-                  {weather.name}, {weather.sys.country}
-                </h2>
+      {/* MAIN CARD */}
+<div
+  style={{
+    background: "rgba(255,255,255,0.12)",
+    backdropFilter: "blur(18px)",
+    border: "1px solid rgba(255,255,255,0.15)",
+    borderRadius: "28px",
+    padding: "32px",
+    marginBottom: "24px",
+    boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: "24px",
+    }}
+  >
+    {/* LEFT SIDE */}
+    <div>
+      <h2
+        style={{
+          margin: 0,
+          fontSize: "32px",
+          fontWeight: "700",
+        }}
+      >
+        {weather.name}, {weather.sys.country}
+      </h2>
 
-                <div
-                  style={{
-                    fontSize: "clamp(56px, 12vw, 96px)",
-                  }}
-                >
-                  {Math.round(weather.main.temp)}
-                  {tempUnit}
-                </div>
+      <p
+        style={{
+          opacity: 0.8,
+          marginTop: "6px",
+          textTransform: "capitalize",
+          fontSize: "18px",
+        }}
+      >
+        {weather.weather[0].description}
+      </p>
 
-                <div
-                  style={{
-                    fontSize: "clamp(32px, 8vw, 48px)",
-                  }}
-                >
-                  {weatherIcons[weather.weather[0].icon]}
-                </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "18px",
+          marginTop: "18px",
+        }}
+      >
+        <div
+          style={{
+            fontSize: "92px",
+            fontWeight: "800",
+            lineHeight: 1,
+          }}
+        >
+          {Math.round(weather.main.temp)}
+          {tempUnit}
+        </div>
 
-                <p>{weather.weather[0].description}</p>
-              </div>
+        <div
+          style={{
+            fontSize: "72px",
+          }}
+        >
+          {weatherIcons[weather.weather[0].icon]}
+        </div>
+      </div>
+    </div>
 
-              {/* STATS */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns:
-                    "repeat(auto-fit, minmax(120px, 1fr))",
-                  gap: "12px",
-                }}
-              >
-                <div>💧 {weather.main.humidity}%</div>
-                <div>
-                  💨 {weather.wind.speed} {speedUnit}
-                </div>
-                <div>🔵 {weather.main.pressure} hPa</div>
-                <div>👁️ {(weather.visibility / 1000).toFixed(1)} km</div>
-                <div>🌅 {formatTime(weather.sys.sunrise)}</div>
-                <div>🌇 {formatTime(weather.sys.sunset)}</div>
-              </div>
-            </div>
+    {/* RIGHT SIDE */}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, minmax(140px, 1fr))",
+        gap: "18px",
+        minWidth: "280px",
+      }}
+    >
+      {[
+        ["💧", "Humidity", `${weather.main.humidity}%`],
+        ["💨", "Wind", `${weather.wind.speed} ${speedUnit}`],
+        ["🔵", "Pressure", `${weather.main.pressure} hPa`],
+        ["👁️", "Visibility", `${(weather.visibility / 1000).toFixed(1)} km`],
+        ["🌅", "Sunrise", formatTime(weather.sys.sunrise)],
+        ["🌇", "Sunset", formatTime(weather.sys.sunset)],
+      ].map(([icon, label, value], i) => (
+        <div
+          key={i}
+          style={{
+            background: "rgba(255,255,255,0.08)",
+            padding: "16px",
+            borderRadius: "18px",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "14px",
+              opacity: 0.7,
+              marginBottom: "8px",
+            }}
+          >
+            {icon} {label}
+          </div>
+
+          <div
+            style={{
+              fontSize: "20px",
+              fontWeight: "700",
+            }}
+          >
+            {value}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
 
             {/* FORECAST */}
             <div
