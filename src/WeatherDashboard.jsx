@@ -254,14 +254,15 @@ export default function WeatherDashboard() {
 
         {weather && !loading && (
           <>
-      {/* MAIN CARD */}
+
+{/* MAIN CARD */}
 <div
   style={{
     background: "rgba(255,255,255,0.12)",
-    backdropFilter: "blur(18px)",
+    backdropFilter: "blur(20px)",
     border: "1px solid rgba(255,255,255,0.15)",
     borderRadius: "28px",
-    padding: "32px",
+    padding: "24px",
     marginBottom: "24px",
     boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
   }}
@@ -269,19 +270,24 @@ export default function WeatherDashboard() {
   <div
     style={{
       display: "flex",
+      flexWrap: "wrap",
       justifyContent: "space-between",
       alignItems: "center",
-      flexWrap: "wrap",
-      gap: "24px",
+      gap: "28px",
     }}
   >
-    {/* LEFT SIDE */}
-    <div>
+    {/* LEFT SECTION */}
+    <div
+      style={{
+        flex: "1 1 320px",
+      }}
+    >
       <h2
         style={{
           margin: 0,
-          fontSize: "32px",
+          fontSize: "clamp(24px, 5vw, 38px)",
           fontWeight: "700",
+          lineHeight: 1.2,
         }}
       >
         {weather.name}, {weather.sys.country}
@@ -289,10 +295,10 @@ export default function WeatherDashboard() {
 
       <p
         style={{
+          marginTop: "8px",
           opacity: 0.8,
-          marginTop: "6px",
           textTransform: "capitalize",
-          fontSize: "18px",
+          fontSize: "clamp(15px, 3vw, 18px)",
         }}
       >
         {weather.weather[0].description}
@@ -302,13 +308,14 @@ export default function WeatherDashboard() {
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "18px",
+          flexWrap: "wrap",
+          gap: "16px",
           marginTop: "18px",
         }}
       >
         <div
           style={{
-            fontSize: "92px",
+            fontSize: "clamp(58px, 15vw, 100px)",
             fontWeight: "800",
             lineHeight: 1,
           }}
@@ -319,7 +326,7 @@ export default function WeatherDashboard() {
 
         <div
           style={{
-            fontSize: "72px",
+            fontSize: "clamp(52px, 10vw, 76px)",
           }}
         >
           {weatherIcons[weather.weather[0].icon]}
@@ -327,13 +334,15 @@ export default function WeatherDashboard() {
       </div>
     </div>
 
-    {/* RIGHT SIDE */}
+    {/* RIGHT SECTION */}
     <div
       style={{
+        flex: "1 1 320px",
         display: "grid",
-        gridTemplateColumns: "repeat(2, minmax(140px, 1fr))",
-        gap: "18px",
-        minWidth: "280px",
+        gridTemplateColumns:
+          "repeat(auto-fit, minmax(140px, 1fr))",
+        gap: "14px",
+        width: "100%",
       }}
     >
       {[
@@ -350,12 +359,16 @@ export default function WeatherDashboard() {
             background: "rgba(255,255,255,0.08)",
             padding: "16px",
             borderRadius: "18px",
+            minHeight: "90px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
           }}
         >
           <div
             style={{
-              fontSize: "14px",
-              opacity: 0.7,
+              fontSize: "13px",
+              opacity: 0.75,
               marginBottom: "8px",
             }}
           >
@@ -364,8 +377,9 @@ export default function WeatherDashboard() {
 
           <div
             style={{
-              fontSize: "20px",
+              fontSize: "clamp(16px, 3vw, 20px)",
               fontWeight: "700",
+              wordBreak: "break-word",
             }}
           >
             {value}
